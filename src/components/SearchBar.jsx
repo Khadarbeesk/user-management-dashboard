@@ -1,5 +1,4 @@
-// src/components/SearchBar.jsx
-
+// Search bar with filter options
 const SearchBar = ({
   searchText,
   setSearchText,
@@ -10,6 +9,7 @@ const SearchBar = ({
   return (
     <div className="search-container">
 
+      {/* Search input */}
       <input
         type="text"
         placeholder="Search users..."
@@ -19,6 +19,7 @@ const SearchBar = ({
         }
       />
 
+      {/* Open filter popup */}
       <button
         className="filter-btn"
         onClick={onOpenFilter}
@@ -26,6 +27,7 @@ const SearchBar = ({
         Filter
       </button>
 
+      {/* Show Clear Filter button only when filters are applied */}
       {isFilterApplied && (
         <button
           className="clear-btn"

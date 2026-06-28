@@ -7,10 +7,13 @@ import UserTable from "./components/UserTable";
 import Pagination from "./components/Pagination";
 import UserForm from "./components/UserForm";
 import ConfirmDelete from "./components/ConfirmDelete";
-
 import useUsers from "./hooks/useUsers";
 
+
+// Main application component
 function App() {
+  // User management state and functions
+
   const {
     users,
     loading,
@@ -40,40 +43,62 @@ function App() {
     removeUser,
   } = useUsers();
 
+  // UI state
   const [showForm, setShowForm] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [deleteUser, setDeleteUser] = useState(null);
+  
+const [successMessage, setSuccessMessage] = useState("");
 
+
+  // Open Add User form
   const handleAdd = () => {
     setSelectedUser(null);
     setShowForm(true);
   };
 
+  // Open Edit User form
   const handleEdit = (user) => {
     setSelectedUser(user);
     setShowForm(true);
   };
 
-  const handleSave = (user) => {
-    if (selectedUser) {
-      editUser(user);
-    } else {
-      addUser(user);
-    }
+  // Save new or updated user
 
-    setShowForm(false);
-    setSelectedUser(null);
-  };
+const handleSave = async (user) => {
+  if (selectedUser) {
+    await editUser(user);
+    setSuccessMessage("User updated successfully!");
+  } else {
+    await addUser(user);
+    setSuccessMessage("User added successfully!");
+  }
 
+  setShowForm(false);
+  setSelectedUser(null);
+
+  setTimeout(() => {
+    setSuccessMessage("");
+  }, 3000);
+};
+  // Open delete confirmation
   const handleDelete = (user) => {
     setDeleteUser(user);
   };
 
-  const confirmDelete = (id) => {
-    removeUser(id);
-    setDeleteUser(null);
-  };
+  // Delete selected user
+  // Delete selected user
+const confirmDelete = async (id) => {
+  await removeUser(id);
+
+  setDeleteUser(null);
+  setSuccessMessage("User deleted successfully!");
+
+  setTimeout(() => {
+    setSuccessMessage("");
+  }, 3000);
+};
 
   // Clear all applied filters
   const clearFilters = () => {
@@ -85,6 +110,7 @@ function App() {
     });
   };
 
+  // Check whether any filter is applied
   const isFilterApplied =
     !!filters.firstName ||
     !!filters.lastName ||
@@ -94,8 +120,28 @@ function App() {
   return (
     <div className="app">
 
+      {/* Dashboard header */}
       <Header onAddUser={handleAdd} />
+       {/* Success Message */}
+     {successMessage && (
+  <div className="success-alert">
+    <span className="success-icon">✔</span>
 
+    <span className="success-text">
+      {successMessage}
+    </span>
+
+    <button
+      className="success-close"
+      onClick={() => setSuccessMessage("")}
+    >
+      ×
+    </button>
+  </div>
+
+)}
+
+      {/* Search and filter controls */}
       <SearchBar
         searchText={searchText}
         setSearchText={setSearchText}
@@ -104,6 +150,7 @@ function App() {
         isFilterApplied={isFilterApplied}
       />
 
+      {/* Filter popup */}
       {showFilter && (
         <FilterPopup
           filters={filters}
@@ -112,18 +159,21 @@ function App() {
         />
       )}
 
+      {/* Loading message */}
       {loading && (
         <h3 className="loading">
           Loading Users...
         </h3>
       )}
 
+      {/* Error message */}
       {error && (
         <h3 className="error">
           {error}
         </h3>
       )}
 
+      {/* User table */}
       {!loading && (
         <UserTable
           users={users}
@@ -137,6 +187,7 @@ function App() {
         />
       )}
 
+      {/* Pagination */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -145,6 +196,7 @@ function App() {
         setPageSize={setPageSize}
       />
 
+      {/* Add/Edit user form */}
       {showForm && (
         <UserForm
           selectedUser={selectedUser}
@@ -153,6 +205,7 @@ function App() {
         />
       )}
 
+      {/* Delete confirmation popup */}
       {deleteUser && (
         <ConfirmDelete
           user={deleteUser}

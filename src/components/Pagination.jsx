@@ -1,5 +1,6 @@
 import { PAGE_SIZES } from "../utils/constants";
 
+// Pagination component for navigating user records
 const Pagination = ({
   currentPage,
   totalPages,
@@ -10,6 +11,7 @@ const Pagination = ({
   return (
     <div className="pagination">
 
+      {/* Select number of rows per page */}
       <div className="page-size">
 
         <label>Rows :</label>
@@ -30,6 +32,7 @@ const Pagination = ({
 
       </div>
 
+      {/* Previous and Next page controls */}
       <div className="page-buttons">
 
         <button
@@ -41,6 +44,7 @@ const Pagination = ({
           Previous
         </button>
 
+        {/* Current page information */}
         <span>
           Page {currentPage} of {totalPages}
         </span>

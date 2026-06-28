@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-
 const FilterPopup = ({ filters, setFilters, onClose }) => {
+  // Store filter values locally until applied
   const [localFilters, setLocalFilters] = useState(filters);
 
+  // Update filter field
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -13,25 +14,24 @@ const FilterPopup = ({ filters, setFilters, onClose }) => {
     }));
   };
 
+  // Apply selected filters
   const handleApply = () => {
     setFilters(localFilters);
     onClose();
   };
 
- 
-const handleReset = () => {
-  const emptyFilters = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    department: "",
+  // Reset all filter fields
+  const handleReset = () => {
+    const emptyFilters = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      department: "",
+    };
+
+    setLocalFilters(emptyFilters);
   };
 
-  setLocalFilters(emptyFilters);
-
-  // Don't apply filters yet.
-  // Just clear the fields inside the popup.
-};
   return (
     <div className="modal-overlay">
       <div className="filter-popup">
@@ -47,7 +47,7 @@ const handleReset = () => {
         </div>
 
         <div className="popup-body">
-
+          {/* First Name filter */}
           <div className="form-group">
             <label>First Name</label>
             <input
@@ -59,6 +59,7 @@ const handleReset = () => {
             />
           </div>
 
+          {/* Last Name filter */}
           <div className="form-group">
             <label>Last Name</label>
             <input
@@ -70,6 +71,7 @@ const handleReset = () => {
             />
           </div>
 
+          {/* Email filter */}
           <div className="form-group">
             <label>Email</label>
             <input
@@ -81,6 +83,7 @@ const handleReset = () => {
             />
           </div>
 
+          {/* Department filter */}
           <div className="form-group">
             <label>Department</label>
             <input
@@ -91,11 +94,10 @@ const handleReset = () => {
               onChange={handleChange}
             />
           </div>
-
         </div>
 
+        {/* Filter action buttons */}
         <div className="popup-footer">
-
           <button
             className="reset-btn"
             onClick={handleReset}
@@ -116,7 +118,6 @@ const handleReset = () => {
           >
             Apply
           </button>
-
         </div>
       </div>
     </div>

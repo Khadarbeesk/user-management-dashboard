@@ -1,3 +1,4 @@
+// Displays a single user row in the table
 const UserRow = ({
   user,
   onEdit,
@@ -15,6 +16,7 @@ const UserRow = ({
 
       <td>{user.department}</td>
 
+      {/* Edit and Delete actions */}
       <td>
         <button
           className="edit-btn"

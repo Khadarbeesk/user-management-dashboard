@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
 import { validateUser } from "../utils/validators";
-
 import { DEPARTMENTS } from "../utils/constants";
 
 const emptyUser = {
@@ -11,6 +9,7 @@ const emptyUser = {
   department: "",
 };
 
+// Form for adding and editing users
 const UserForm = ({
   selectedUser,
   onSave,
@@ -21,6 +20,7 @@ const UserForm = ({
 
   const [errors, setErrors] = useState({});
 
+  // Populate form when editing a user
   useEffect(() => {
     if (selectedUser) {
       setFormData(selectedUser);
@@ -29,6 +29,7 @@ const UserForm = ({
     }
   }, [selectedUser]);
 
+  // Update form field values
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -38,6 +39,7 @@ const UserForm = ({
     });
   };
 
+  // Validate and submit the form
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -59,6 +61,7 @@ const UserForm = ({
 
       <div className="form-container">
 
+        {/* Form title */}
         <h2>
           {selectedUser
             ? "Edit User"
@@ -67,6 +70,7 @@ const UserForm = ({
 
         <form onSubmit={handleSubmit}>
 
+          {/* First Name */}
           <input
             type="text"
             name="firstName"
@@ -74,9 +78,9 @@ const UserForm = ({
             value={formData.firstName}
             onChange={handleChange}
           />
-
           <small>{errors.firstName}</small>
 
+          {/* Last Name */}
           <input
             type="text"
             name="lastName"
@@ -84,9 +88,9 @@ const UserForm = ({
             value={formData.lastName}
             onChange={handleChange}
           />
-
           <small>{errors.lastName}</small>
 
+          {/* Email */}
           <input
             type="email"
             name="email"
@@ -94,9 +98,9 @@ const UserForm = ({
             value={formData.email}
             onChange={handleChange}
           />
-
           <small>{errors.email}</small>
 
+          {/* Department */}
           <select
             name="department"
             value={formData.department}
@@ -118,6 +122,7 @@ const UserForm = ({
 
           <small>{errors.department}</small>
 
+          {/* Form action buttons */}
           <div className="form-buttons">
 
             <button type="submit">

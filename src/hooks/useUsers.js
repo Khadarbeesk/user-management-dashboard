@@ -23,6 +23,7 @@ const initialFilters = {
   department: "",
 };
 
+// Custom hook to manage user data and operations
 const useUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -37,14 +38,17 @@ const useUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
 
+  // Load users when the component mounts
   useEffect(() => {
     loadUsers();
   }, []);
 
+  // Reset to the first page when search, filter, or sort changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchText, filters, sortField, sortOrder]);
 
+  // Fetch users from the API
   const loadUsers = async () => {
     try {
       setLoading(true);
@@ -59,6 +63,7 @@ const useUsers = () => {
     }
   };
 
+  // Add a new user
   const addUser = async (newUser) => {
     try {
       setLoading(true);
@@ -72,7 +77,7 @@ const useUsers = () => {
         ...newUser,
       };
 
-      // Add at the end. Sorting will decide the position.
+      // Add user to the list
       setUsers((prev) => [...prev, user]);
     } catch {
       setError("Unable to add user.");
@@ -81,6 +86,7 @@ const useUsers = () => {
     }
   };
 
+  // Update an existing user
   const editUser = async (updatedUser) => {
     try {
       setLoading(true);
@@ -99,6 +105,7 @@ const useUsers = () => {
     }
   };
 
+  // Delete a user
   const removeUser = async (id) => {
     try {
       setLoading(true);
@@ -115,6 +122,7 @@ const useUsers = () => {
     }
   };
 
+  // Apply search, filter, and sorting
   const processedUsers = useMemo(() => {
     let data = [...users];
 
@@ -125,17 +133,20 @@ const useUsers = () => {
     return data;
   }, [users, searchText, filters, sortField, sortOrder]);
 
+  // Calculate total pages
   const totalPages = Math.max(
     1,
     Math.ceil(processedUsers.length / pageSize)
   );
 
+  // Keep current page within valid range
   useEffect(() => {
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
     }
   }, [currentPage, totalPages]);
 
+  // Get users for the current page
   const paginatedUsers = useMemo(() => {
     return paginateUsers(
       processedUsers,

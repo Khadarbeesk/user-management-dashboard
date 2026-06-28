@@ -1,5 +1,6 @@
 import UserRow from "./UserRow";
 
+// Displays the user list in a sortable table
 const UserTable = ({
   users,
   isFilterApplied,
@@ -10,6 +11,7 @@ const UserTable = ({
   onEdit,
   onDelete,
 }) => {
+  // Handle sorting when a column header is clicked
   const handleSort = (field) => {
     if (sortField === field) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -22,42 +24,46 @@ const UserTable = ({
   return (
     <div className="table-container">
       <table>
-       <thead>
-  <tr>
-    <th onClick={() => handleSort("id")}>
-      ID
-      {sortField === "id" &&
-        (sortOrder === "asc" ? " ▲" : " ▼")}
-    </th>
 
-    <th onClick={() => handleSort("firstName")}>
-      First Name
-      {sortField === "firstName" &&
-        (sortOrder === "asc" ? " ▲" : " ▼")}
-    </th>
+        {/* Table headers */}
+        <thead>
+          <tr>
+            <th onClick={() => handleSort("id")}>
+              ID
+              {sortField === "id" &&
+                (sortOrder === "asc" ? " ▲" : " ▼")}
+            </th>
 
-    <th onClick={() => handleSort("lastName")}>
-      Last Name
-      {sortField === "lastName" &&
-        (sortOrder === "asc" ? " ▲" : " ▼")}
-    </th>
+            <th onClick={() => handleSort("firstName")}>
+              First Name
+              {sortField === "firstName" &&
+                (sortOrder === "asc" ? " ▲" : " ▼")}
+            </th>
 
-    <th onClick={() => handleSort("email")}>
-      Email
-      {sortField === "email" &&
-        (sortOrder === "asc" ? " ▲" : " ▼")}
-    </th>
+            <th onClick={() => handleSort("lastName")}>
+              Last Name
+              {sortField === "lastName" &&
+                (sortOrder === "asc" ? " ▲" : " ▼")}
+            </th>
 
-    <th onClick={() => handleSort("department")}>
-      Department
-      {sortField === "department" &&
-        (sortOrder === "asc" ? " ▲" : " ▼")}
-    </th>
+            <th onClick={() => handleSort("email")}>
+              Email
+              {sortField === "email" &&
+                (sortOrder === "asc" ? " ▲" : " ▼")}
+            </th>
 
-    <th>Actions</th>
-  </tr>
-</thead>
+            <th onClick={() => handleSort("department")}>
+              Department
+              {sortField === "department" &&
+                (sortOrder === "asc" ? " ▲" : " ▼")}
+            </th>
+
+            <th>Actions</th>
+          </tr>
+        </thead>
+
         <tbody>
+          {/* Display users if available */}
           {users.length > 0 ? (
             users.map((user) => (
               <UserRow
@@ -68,6 +74,7 @@ const UserTable = ({
               />
             ))
           ) : (
+            // Show message when no users are found
             <tr>
               <td
                 colSpan="6"
@@ -78,6 +85,7 @@ const UserTable = ({
               >
                 <h3>No Users Found</h3>
 
+                {/* Show extra message if filters are applied */}
                 {isFilterApplied && (
                   <p
                     style={{
@@ -96,6 +104,7 @@ const UserTable = ({
             </tr>
           )}
         </tbody>
+
       </table>
     </div>
   );

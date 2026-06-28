@@ -1,3 +1,4 @@
+// Confirmation dialog for deleting a user
 const ConfirmDelete = ({
   user,
   onConfirm,
@@ -5,11 +6,10 @@ const ConfirmDelete = ({
 }) => {
   return (
     <div className="modal">
-
       <div className="confirm-delete">
-
         <h2>Delete User</h2>
 
+        {/* Confirmation message */}
         <p>
           Are you sure you want to delete
           <strong>
@@ -19,8 +19,8 @@ const ConfirmDelete = ({
           ?
         </p>
 
+        {/* Action buttons */}
         <div className="delete-buttons">
-
           <button
             className="delete-btn"
             onClick={() => onConfirm(user.id)}
@@ -34,11 +34,8 @@ const ConfirmDelete = ({
           >
             Cancel
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 };
