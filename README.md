@@ -1,6 +1,13 @@
 # User Management Dashboard
 
 A responsive User Management Dashboard built with **React** that allows users to view, search, filter, sort, paginate, add, edit, and delete user records. User data is fetched from the JSONPlaceholder API and managed on the client side.
+## 🚀 Live Demo
+
+https://user-management-dashboard-ten-theta.vercel.app
+
+## 📂 GitHub Repository
+
+https://github.com/Khadarbeesk/user-management-dashboard
 
 ---
 
