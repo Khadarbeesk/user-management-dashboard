@@ -1,0 +1,105 @@
+/* ==========================
+   Header
+========================== */
+
+.header {
+  background: #fff;
+  padding: 24px 30px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f7;
+}
+
+.header h1 {
+  font-size: 30px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ==========================
+   Add Button
+========================== */
+
+.add-btn {
+  min-width: 150px;
+  min-height: 46px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.3);
+}
+
+/* ==========================
+   Tablet
+========================== */
+
+@media (max-width: 768px) {
+
+  .header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 22px;
+  }
+
+  .header h1 {
+    font-size: 26px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .add-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 480px) {
+
+  .header {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .add-btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+}

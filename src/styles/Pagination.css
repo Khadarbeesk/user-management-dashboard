@@ -1,0 +1,145 @@
+/* ==========================
+   Pagination
+========================== */
+
+.pagination {
+  margin-top: 25px;
+  padding: 18px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f7;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ==========================
+   Page Buttons
+========================== */
+
+.page-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-buttons button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.page-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+}
+
+.page-buttons button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ==========================
+   Page Info
+========================== */
+
+.page-buttons span {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ==========================
+   Page Size
+========================== */
+
+.page-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-size label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.page-size select {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.page-size select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================
+   Tablet
+========================== */
+
+@media (max-width: 768px) {
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .page-buttons {
+    justify-content: center;
+  }
+
+  .page-size {
+    justify-content: center;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 480px) {
+
+  .pagination {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .page-buttons {
+    gap: 8px;
+  }
+
+  .page-buttons button {
+    flex: 1;
+    min-width: 60px;
+    min-height: 44px;
+  }
+
+  .page-size {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-size select {
+    width: 100%;
+  }
+
+}
