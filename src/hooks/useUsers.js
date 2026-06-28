@@ -64,27 +64,30 @@ const useUsers = () => {
   };
 
   // Add a new user
-  const addUser = async (newUser) => {
-    try {
-      setLoading(true);
+ // Add a new user
+const addUser = async (newUser) => {
+  try {
+    setLoading(true);
 
-      const createdUser = await createUser(newUser);
+    await createUser(newUser);
 
-      const user = {
-        id:
-          createdUser.id ||
-          Math.max(...users.map((u) => u.id), 0) + 1,
-        ...newUser,
-      };
+    // Generate a unique local ID
+    const nextId =
+      Math.max(...users.map((u) => Number(u.id)), 0) + 1;
 
-      // Add user to the list
-      setUsers((prev) => [...prev, user]);
-    } catch {
-      setError("Unable to add user.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const user = {
+      id: nextId,
+      ...newUser,
+    };
+
+    // Add user to the list
+    setUsers((prev) => [...prev, user]);
+  } catch {
+    setError("Unable to add user.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Update an existing user
   const editUser = async (updatedUser) => {

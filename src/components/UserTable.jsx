@@ -96,8 +96,8 @@ const UserTable = ({
                   >
                     No users match the applied filters.
                     <br />
-                    Click <strong>Filter</strong> and then{" "}
-                    <strong>Clear Filter</strong> to view all users.
+                  
+                    <strong> Click Clear Filter</strong> to view all users.
                   </p>
                 )}
               </td>
